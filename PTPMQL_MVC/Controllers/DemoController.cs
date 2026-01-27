@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PTPMQL_MVC.Models;
 using System.Diagnostics;
 
-namespace YourProjectName.Controllers
+namespace PTPMQL_MVC.Controllers
 {
     public class DemoController : Controller
     {

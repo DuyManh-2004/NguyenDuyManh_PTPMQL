@@ -1,3 +1,4 @@
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PTPMQL_MVC.Models;
@@ -21,6 +22,12 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+[HttpPost]
+public IActionResult Index (string Fullname , string Address)
+    {
+        string strOutput = " Xin chao " + Fullname + " den tu " + Address;
+        ViewBag.Message = strOutput;
+        return View();
+    }
 }
-
 
