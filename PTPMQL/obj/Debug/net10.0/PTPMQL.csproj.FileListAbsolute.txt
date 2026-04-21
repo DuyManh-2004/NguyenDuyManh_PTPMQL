@@ -1,0 +1,15 @@
+D:\PhatTrienPhamMemQuanLy\PTPMQL\bin\Debug\net10.0\PTPMQL.exe
+D:\PhatTrienPhamMemQuanLy\PTPMQL\bin\Debug\net10.0\PTPMQL.deps.json
+D:\PhatTrienPhamMemQuanLy\PTPMQL\bin\Debug\net10.0\PTPMQL.runtimeconfig.json
+D:\PhatTrienPhamMemQuanLy\PTPMQL\bin\Debug\net10.0\PTPMQL.dll
+D:\PhatTrienPhamMemQuanLy\PTPMQL\bin\Debug\net10.0\PTPMQL.pdb
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.GeneratedMSBuildEditorConfig.editorconfig
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.AssemblyInfoInputs.cache
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.AssemblyInfo.cs
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.csproj.CoreCompileInputs.cache
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.sourcelink.json
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.dll
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\refint\PTPMQL.dll
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.pdb
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\PTPMQL.genruntimeconfig.cache
+D:\PhatTrienPhamMemQuanLy\PTPMQL\obj\Debug\net10.0\ref\PTPMQL.dll
