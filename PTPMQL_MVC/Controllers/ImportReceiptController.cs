@@ -22,7 +22,7 @@ namespace PTPMQL_MVC.Controllers
         // GET: ImportReceipt
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ImportReceipt.Include(i => i.Supplier);
+            var applicationDbContext = _context.ImportReceipts.Include(i => i.Supplier);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var importReceipt = await _context.ImportReceipt
+            var importReceipt = await _context.ImportReceipts
                 .Include(i => i.Supplier)
                 .FirstOrDefaultAsync(m => m.ImportReceiptID == id);
             if (importReceipt == null)
@@ -48,7 +48,7 @@ namespace PTPMQL_MVC.Controllers
         // GET: ImportReceipt/Create
         public IActionResult Create()
         {
-            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierId", "SupplierName");
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace PTPMQL_MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierId", "SupplierName", importReceipt.SupplierID);
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", importReceipt.SupplierID);
             return View(importReceipt);
         }
 
@@ -77,12 +77,12 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var importReceipt = await _context.ImportReceipt.FindAsync(id);
+            var importReceipt = await _context.ImportReceipts.FindAsync(id);
             if (importReceipt == null)
             {
                 return NotFound();
             }
-            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierId", "SupplierName", importReceipt.SupplierID);
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", importReceipt.SupplierID);
             return View(importReceipt);
         }
 
@@ -118,7 +118,7 @@ namespace PTPMQL_MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierId", "SupplierName", importReceipt.SupplierID);
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", importReceipt.SupplierID);
             return View(importReceipt);
         }
 
@@ -130,7 +130,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var importReceipt = await _context.ImportReceipt
+            var importReceipt = await _context.ImportReceipts
                 .Include(i => i.Supplier)
                 .FirstOrDefaultAsync(m => m.ImportReceiptID == id);
             if (importReceipt == null)
@@ -146,10 +146,10 @@ namespace PTPMQL_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var importReceipt = await _context.ImportReceipt.FindAsync(id);
+            var importReceipt = await _context.ImportReceipts.FindAsync(id);
             if (importReceipt != null)
             {
-                _context.ImportReceipt.Remove(importReceipt);
+                _context.ImportReceipts.Remove(importReceipt);
             }
 
             await _context.SaveChangesAsync();
@@ -158,7 +158,7 @@ namespace PTPMQL_MVC.Controllers
 
         private bool ImportReceiptExists(int id)
         {
-            return _context.ImportReceipt.Any(e => e.ImportReceiptID == id);
+            return _context.ImportReceipts.Any(e => e.ImportReceiptID == id);
         }
     }
 }

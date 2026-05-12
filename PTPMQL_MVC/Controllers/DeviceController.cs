@@ -139,10 +139,10 @@ namespace PTPMQL_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var device = await _context.Device.FindAsync(id);
+            var device = await _context.Devices.FindAsync(id);
             if (device != null)
             {
-                _context.Device.Remove(device);
+                _context.Devices.Remove(device);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace PTPMQL_MVC.Controllers
 
         private bool DeviceExists(int id)
         {
-            return _context.Device.Any(e => e.DeviceID == id);
+            return _context.Devices.Any(e => e.DeviceID == id);
         }
     }
 }

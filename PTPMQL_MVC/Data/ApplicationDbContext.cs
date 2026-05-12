@@ -10,12 +10,15 @@ namespace PTPMQL_MVC.Data
         public DbSet<PTPMQL_MVC.Models.Entities.Employee> Employee { get; set; } = default!;
         public DbSet<PTPMQL_MVC.Models.Entities.Student> Students { get; set; } = default!;
         public DbSet<PTPMQL_MVC.Models.Entities.Faculty> Faculties { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.Supplier> Suppliers { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.DeviceCategory> DeviceCategorys { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.Device> Devices { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.ImportReceipt> ImportReceipts { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.ImportDetail> ImportDetails { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.ExportReceipt> ExportReceipts { get; set; } = default!;
-        public DbSet<PTPMQL_MVC.Models.Entities.ExportDetail> ExportDetails { get; set; } = default!;
+        public DbSet<Device> Devices { get; set; }
+    public DbSet<DeviceCategory> DeviceCategories { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
+
+    public DbSet<ImportReceipt> ImportReceipts { get; set; }
+    public DbSet<ImportDetail> ImportDetails { get; set; }
+
+    public DbSet<ExportReceipt> ExportReceipts { get; set; }
+    public DbSet<ExportDetail> ExportDetails { get; set; }
+        public DbSet<PTPMQL_MVC.Models.Entities.Book> Books { get; set; } = default!;
     }
 } 

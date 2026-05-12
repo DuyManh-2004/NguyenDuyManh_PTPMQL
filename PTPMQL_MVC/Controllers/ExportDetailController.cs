@@ -22,7 +22,7 @@ namespace PTPMQL_MVC.Controllers
         // GET: ExportDetail
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ExportDetail.Include(e => e.Device).Include(e => e.ExportReceipt);
+            var applicationDbContext = _context.ExportDetails.Include(e => e.Device).Include(e => e.ExportReceipt);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportDetail = await _context.ExportDetail
+            var exportDetail = await _context.ExportDetails
                 .Include(e => e.Device)
                 .Include(e => e.ExportReceipt)
                 .FirstOrDefaultAsync(m => m.ExportDetailID == id);
@@ -49,8 +49,8 @@ namespace PTPMQL_MVC.Controllers
         // GET: ExportDetail/Create
         public IActionResult Create()
         {
-            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName");
-            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID");
+            ViewData["DeviceID"] = new SelectList(_context.Devices, "DeviceID", "DeviceName");
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipts, "ExportReceiptID", "ExportReceiptID");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace PTPMQL_MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
-            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            ViewData["DeviceID"] = new SelectList(_context.Devices, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipts, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
             return View(exportDetail);
         }
 
@@ -80,13 +80,13 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportDetail = await _context.ExportDetail.FindAsync(id);
+            var exportDetail = await _context.ExportDetails.FindAsync(id);
             if (exportDetail == null)
             {
                 return NotFound();
             }
-            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
-            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            ViewData["DeviceID"] = new SelectList(_context.Devices, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipts, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
             return View(exportDetail);
         }
 
@@ -122,8 +122,8 @@ namespace PTPMQL_MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
-            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            ViewData["DeviceID"] = new SelectList(_context.Devices, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipts, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
             return View(exportDetail);
         }
 
@@ -135,7 +135,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportDetail = await _context.ExportDetail
+            var exportDetail = await _context.ExportDetails
                 .Include(e => e.Device)
                 .Include(e => e.ExportReceipt)
                 .FirstOrDefaultAsync(m => m.ExportDetailID == id);
@@ -152,10 +152,10 @@ namespace PTPMQL_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var exportDetail = await _context.ExportDetail.FindAsync(id);
+            var exportDetail = await _context.ExportDetails.FindAsync(id);
             if (exportDetail != null)
             {
-                _context.ExportDetail.Remove(exportDetail);
+                _context.ExportDetails.Remove(exportDetail);
             }
 
             await _context.SaveChangesAsync();
@@ -164,7 +164,7 @@ namespace PTPMQL_MVC.Controllers
 
         private bool ExportDetailExists(int id)
         {
-            return _context.ExportDetail.Any(e => e.ExportDetailID == id);
+            return _context.ExportDetails.Any(e => e.ExportDetailID == id);
         }
     }
 }

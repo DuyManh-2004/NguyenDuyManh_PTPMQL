@@ -17,6 +17,56 @@ namespace PTPMQL_MVC.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
 
+            modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PublishYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Publisher")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
+
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Device", b =>
                 {
                     b.Property<int>("DeviceID")
@@ -24,9 +74,6 @@ namespace PTPMQL_MVC.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CategoryID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("DeviceCategoryCategoryID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DeviceName")
@@ -38,9 +85,9 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasKey("DeviceID");
 
-                    b.HasIndex("DeviceCategoryCategoryID");
+                    b.HasIndex("CategoryID");
 
-                    b.ToTable("Device");
+                    b.ToTable("Devices");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.DeviceCategory", b =>
@@ -55,7 +102,7 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("DeviceCategory");
+                    b.ToTable("DeviceCategories");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Employee", b =>
@@ -111,7 +158,7 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasIndex("ExportReceiptID");
 
-                    b.ToTable("ExportDetail");
+                    b.ToTable("ExportDetails");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.ExportReceipt", b =>
@@ -125,7 +172,7 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasKey("ExportReceiptID");
 
-                    b.ToTable("ExportReceipt");
+                    b.ToTable("ExportReceipts");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Faculty", b =>
@@ -169,7 +216,7 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasIndex("ImportReceiptID");
 
-                    b.ToTable("ImportDetail");
+                    b.ToTable("ImportDetails");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.ImportReceipt", b =>
@@ -188,12 +235,16 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasIndex("SupplierID");
 
-                    b.ToTable("ImportReceipt");
+                    b.ToTable("ImportReceipts");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Student", b =>
                 {
-                    b.Property<string>("StudentCode")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FacultyId")
@@ -204,7 +255,11 @@ namespace PTPMQL_MVC.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("StudentCode");
+                    b.Property<string>("StudentCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("FacultyId");
 
@@ -224,14 +279,16 @@ namespace PTPMQL_MVC.Migrations
 
                     b.HasKey("SupplierId");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("PTPMQL_MVC.Models.Entities.Device", b =>
                 {
                     b.HasOne("PTPMQL_MVC.Models.Entities.DeviceCategory", "DeviceCategory")
                         .WithMany("Devices")
-                        .HasForeignKey("DeviceCategoryCategoryID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DeviceCategory");
                 });

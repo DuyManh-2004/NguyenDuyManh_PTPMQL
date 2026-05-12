@@ -22,7 +22,7 @@ namespace PTPMQL_MVC.Controllers
         // GET: DeviceCategory
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DeviceCategorys.ToListAsync());
+            return View(await _context.DeviceCategories.ToListAsync());
         }
 
         // GET: DeviceCategory/Details/5
@@ -33,7 +33,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var deviceCategory = await _context.DeviceCategorys
+            var deviceCategory = await _context.DeviceCategories
                 .FirstOrDefaultAsync(m => m.CategoryID == id);
             if (deviceCategory == null)
             {
@@ -73,7 +73,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var deviceCategory = await _context.DeviceCategorys.FindAsync(id);
+            var deviceCategory = await _context.DeviceCategories.FindAsync(id);
             if (deviceCategory == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var deviceCategory = await _context.DeviceCategorys
+            var deviceCategory = await _context.DeviceCategories
                 .FirstOrDefaultAsync(m => m.CategoryID == id);
             if (deviceCategory == null)
             {
@@ -139,10 +139,10 @@ namespace PTPMQL_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var deviceCategory = await _context.DeviceCategorys.FindAsync(id);
+            var deviceCategory = await _context.DeviceCategories.FindAsync(id);
             if (deviceCategory != null)
             {
-                _context.DeviceCategorys.Remove(deviceCategory);
+                _context.DeviceCategories.Remove(deviceCategory);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace PTPMQL_MVC.Controllers
 
         private bool DeviceCategoryExists(int id)
         {
-            return _context.DeviceCategorys.Any(e => e.CategoryID == id);
+            return _context.DeviceCategories.Any(e => e.CategoryID == id);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace PTPMQL_MVC.Controllers
         // GET: ExportReceipt
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ExportReceipt.ToListAsync());
+            return View(await _context.ExportReceipts.ToListAsync());
         }
 
         // GET: ExportReceipt/Details/5
@@ -33,7 +33,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportReceipt = await _context.ExportReceipt
+            var exportReceipt = await _context.ExportReceipts
                 .FirstOrDefaultAsync(m => m.ExportReceiptID == id);
             if (exportReceipt == null)
             {
@@ -73,7 +73,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportReceipt = await _context.ExportReceipt.FindAsync(id);
+            var exportReceipt = await _context.ExportReceipts.FindAsync(id);
             if (exportReceipt == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace PTPMQL_MVC.Controllers
                 return NotFound();
             }
 
-            var exportReceipt = await _context.ExportReceipt
+            var exportReceipt = await _context.ExportReceipts
                 .FirstOrDefaultAsync(m => m.ExportReceiptID == id);
             if (exportReceipt == null)
             {
@@ -139,10 +139,10 @@ namespace PTPMQL_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var exportReceipt = await _context.ExportReceipt.FindAsync(id);
+            var exportReceipt = await _context.ExportReceipts.FindAsync(id);
             if (exportReceipt != null)
             {
-                _context.ExportReceipt.Remove(exportReceipt);
+                _context.ExportReceipts.Remove(exportReceipt);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace PTPMQL_MVC.Controllers
 
         private bool ExportReceiptExists(int id)
         {
-            return _context.ExportReceipt.Any(e => e.ExportReceiptID == id);
+            return _context.ExportReceipts.Any(e => e.ExportReceiptID == id);
         }
     }
 }

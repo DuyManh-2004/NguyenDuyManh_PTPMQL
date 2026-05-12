@@ -6,6 +6,7 @@ namespace PTPMQL_MVC.Models.Entities
     public class Student
     {
         [Key]
+        public int Id { get; set; }
         [MinLength(6, ErrorMessage = "Ma sinh vien phai co it nhat 6 ky tu")]
         public string StudentCode { get; set; } = default!;
         [Required(ErrorMessage = "Ho va ten khong duoc de trong")]
@@ -13,5 +14,6 @@ namespace PTPMQL_MVC.Models.Entities
         public string FacultyId { get; set; } = default!;
         [ForeignKey("FacultyId")]
         public virtual Faculty? Faculty { get; set; } = default!;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }
