@@ -1,0 +1,33 @@
+
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using PTPMQL_MVC.Models;
+
+namespace PTPMQL_MVC.Controllers;
+
+public class HomeController : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+[HttpPost]
+public IActionResult Index (string Fullname , string Address)
+    {
+        string strOutput = " Xin chao " + Fullname + " den tu " + Address;
+        ViewBag.Message = strOutput;
+        return View();
+    }
+}
+

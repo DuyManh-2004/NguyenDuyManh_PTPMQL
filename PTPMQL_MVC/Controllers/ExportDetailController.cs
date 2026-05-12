@@ -1,0 +1,170 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using PTPMQL_MVC.Data;
+using PTPMQL_MVC.Models.Entities;
+
+namespace PTPMQL_MVC.Controllers
+{
+    public class ExportDetailController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public ExportDetailController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: ExportDetail
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.ExportDetail.Include(e => e.Device).Include(e => e.ExportReceipt);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: ExportDetail/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var exportDetail = await _context.ExportDetail
+                .Include(e => e.Device)
+                .Include(e => e.ExportReceipt)
+                .FirstOrDefaultAsync(m => m.ExportDetailID == id);
+            if (exportDetail == null)
+            {
+                return NotFound();
+            }
+
+            return View(exportDetail);
+        }
+
+        // GET: ExportDetail/Create
+        public IActionResult Create()
+        {
+            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName");
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID");
+            return View();
+        }
+
+        // POST: ExportDetail/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ExportDetailID,ExportReceiptID,DeviceID,UnitPrice,Quantity,TotalMoney")] ExportDetail exportDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(exportDetail);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            return View(exportDetail);
+        }
+
+        // GET: ExportDetail/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var exportDetail = await _context.ExportDetail.FindAsync(id);
+            if (exportDetail == null)
+            {
+                return NotFound();
+            }
+            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            return View(exportDetail);
+        }
+
+        // POST: ExportDetail/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ExportDetailID,ExportReceiptID,DeviceID,UnitPrice,Quantity,TotalMoney")] ExportDetail exportDetail)
+        {
+            if (id != exportDetail.ExportDetailID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(exportDetail);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ExportDetailExists(exportDetail.ExportDetailID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["DeviceID"] = new SelectList(_context.Device, "DeviceID", "DeviceName", exportDetail.DeviceID);
+            ViewData["ExportReceiptID"] = new SelectList(_context.ExportReceipt, "ExportReceiptID", "ExportReceiptID", exportDetail.ExportReceiptID);
+            return View(exportDetail);
+        }
+
+        // GET: ExportDetail/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var exportDetail = await _context.ExportDetail
+                .Include(e => e.Device)
+                .Include(e => e.ExportReceipt)
+                .FirstOrDefaultAsync(m => m.ExportDetailID == id);
+            if (exportDetail == null)
+            {
+                return NotFound();
+            }
+
+            return View(exportDetail);
+        }
+
+        // POST: ExportDetail/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var exportDetail = await _context.ExportDetail.FindAsync(id);
+            if (exportDetail != null)
+            {
+                _context.ExportDetail.Remove(exportDetail);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ExportDetailExists(int id)
+        {
+            return _context.ExportDetail.Any(e => e.ExportDetailID == id);
+        }
+    }
+}
