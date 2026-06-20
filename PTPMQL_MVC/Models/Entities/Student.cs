@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 namespace PTPMQL_MVC.Models.Entities
 {
@@ -10,7 +11,9 @@ public class Student
         public string StudentCode { get; set; } = default!;
         [Required(ErrorMessage = "Ho va ten khong duoc de trong")]
         public string FullName { get; set; } = default!;
-        [Required(ErrorMessage = "Tuoi khong duoc de trong")]
-        public int? Age { get; set; }
+        public string FacultyId { get; set; } = default!;
+
+        [ForeignKey("FacultyId")]
+        public virtual Faculty? Faculty { get; set; } = default!;
 }
 }
