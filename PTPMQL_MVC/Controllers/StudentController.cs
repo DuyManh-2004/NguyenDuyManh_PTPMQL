@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PTPMQL_MVC.Models;
 using PTPMQL_MVC.Models.Entities;
+using PTPMQL_MVC.Models.Process;
 using PTPMQL_MVC.Data;
+using ClosedXML.Excel;
 
 
 namespace PTPMQL_MVC.Controllers
@@ -15,6 +18,7 @@ namespace PTPMQL_MVC.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly ExcelProcess _excelProcess = new ExcelProcess();
         public StudentController(ApplicationDbContext context)
         {
             _context = context;
@@ -164,5 +168,26 @@ namespace PTPMQL_MVC.Controllers
         {
             return _context.Students.Any(e => e.StudentCode == id);
         }
+        [HttpPost]
+
+public async Task<IActionResult> Import(IFormFile file)
+{
+    ExcelProcess excel = new ExcelProcess();
+
+    var students = excel.ImportExcel(file);
+
+    foreach (var item in students)
+    {
+        if (!_context.Students.Any(x => x.StudentCode == item.StudentCode))
+        {
+            _context.Students.Add(item);
+        }
+    }
+
+    await _context.SaveChangesAsync();
+
+    return RedirectToAction(nameof(Index));
+}
     }
 }
+        

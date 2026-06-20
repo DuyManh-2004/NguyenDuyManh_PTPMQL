@@ -365,3 +365,16 @@ C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\runtimes\win
 C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\obj\Debug\net10.0\PTPMQL_MVC.csproj.Up2Date
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\ClosedXML.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\ClosedXML.Parser.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\DocumentFormat.OpenXml.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\EPPlus.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\EPPlus.Interfaces.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\ExcelNumberFormat.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\RBush.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\SixLabors.Fonts.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\System.IO.Packaging.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\manh0\OneDrive\Desktop\PTPMQL\PTPMQL_MVC\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Security.Cryptography.Pkcs.dll
