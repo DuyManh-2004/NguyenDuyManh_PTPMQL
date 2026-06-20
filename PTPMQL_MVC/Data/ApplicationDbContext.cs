@@ -15,5 +15,10 @@ namespace PTPMQL_MVC.Data
         public DbSet<Order> Order { get; set; } = default!;
         public DbSet<OrderDetail> OrderDetail { get; set; } = default!;
         public DbSet<Product> Product { get; set; } = default!;
+        public DbSet<PTPMQL_MVC.Models.Entities.Device> Device { get; set; } = default!;
+        public DbSet<PTPMQL_MVC.Models.Entities.DeviceCategory> DeviceCategory { get; set; } = default!;
+        public DbSet<PTPMQL_MVC.Models.Entities.ExportReceipt> ExportReceipt { get; set; } = default!;
+        public DbSet<PTPMQL_MVC.Models.Entities.ImportReceipt> ImportReceipt { get; set; } = default!;
+        public DbSet<PTPMQL_MVC.Models.Entities.Supplier> Supplier { get; set; } = default!;
       }
 }
