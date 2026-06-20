@@ -11,5 +11,9 @@ namespace PTPMQL_MVC.Data
         }
         public DbSet<Student> Students { get; set;}
         public DbSet<Faculty> Faculties { get; set;}
+        public DbSet<Customer> Customer { get; set; } = default!;
+        public DbSet<Order> Order { get; set; } = default!;
+        public DbSet<OrderDetail> OrderDetail { get; set; } = default!;
+        public DbSet<Product> Product { get; set; } = default!;
       }
 }
