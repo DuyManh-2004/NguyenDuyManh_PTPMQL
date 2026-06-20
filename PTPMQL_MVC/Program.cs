@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using PTPMQL_MVC.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
